@@ -21,8 +21,9 @@ public:
     QString Status();
     QString Education();
     int Salary();
+    int m_iMarried;//指示是否已婚，1--已婚 0--未婚
 private slots:
-    void on_checkboxMarried_clicked();
+    void on_checkboxMarried_changed();
 
 private:
     Ui::AddDialog *ui;

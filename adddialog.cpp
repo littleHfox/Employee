@@ -37,9 +37,12 @@ int AddDialog::Salary()
     QString s = ui->textSalary->toPlainText();
     return s.toInt();
 }
-void AddDialog::on_checkboxMarried_clicked()
+void AddDialog::on_checkboxMarried_changed()
 {
-
+    if(ui->checkBoxMarried->isChecked())
+        m_iMarried=1;
+    else
+        m_iMarried=0;
 }
 
 AddDialog::~AddDialog()

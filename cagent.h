@@ -8,7 +8,6 @@ class CAgent
 public:
     CAgent();
     CAgent(const CAgent& agent);
-    virtual ~CAgent();
     void SaveAgent(QTextStream& aStream);
     void ReadAgent(QTextStream& aStream);
 private:
