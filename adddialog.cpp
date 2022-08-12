@@ -6,6 +6,7 @@ AddDialog::AddDialog(QWidget *parent) :
     ui(new Ui::AddDialog)
 {
     ui->setupUi(this);
+    m_iMarried = 0;
 }
 QString AddDialog::Name()
 {
@@ -37,12 +38,12 @@ int AddDialog::Salary()
     QString s = ui->textSalary->toPlainText();
     return s.toInt();
 }
-void AddDialog::on_checkboxMarried_changed()
+void AddDialog::on_checkBoxMarried_stateChanged(int arg1)
 {
-    if(ui->checkBoxMarried->isChecked())
-        m_iMarried=1;
-    else
-        m_iMarried=0;
+    if(arg1 == 2)
+        m_iMarried = 1;
+    if(arg1 == 0)
+        m_iMarried = 0;
 }
 
 AddDialog::~AddDialog()

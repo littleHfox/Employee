@@ -15,6 +15,7 @@ public:
     explicit DeleteDialog(QWidget *parent = nullptr);
     ~DeleteDialog();
 
+    int deid();
 private:
     Ui::DeleteDialog *ui;
 };

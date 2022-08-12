@@ -16,7 +16,9 @@ SOURCES += \
     editdialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    readonlydelegate.cpp \
     seekbybirthdatedialog.cpp \
+    seekbyeducationdialog.cpp \
     seekbymarrieddialog.cpp \
     seekbystatusdialog.cpp
 
@@ -27,7 +29,9 @@ HEADERS += \
     deletedialog.h \
     editdialog.h \
     mainwindow.h \
+    readonlydelegate.h \
     seekbybirthdatedialog.h \
+    seekbyeducationdialog.h \
     seekbymarrieddialog.h \
     seekbystatusdialog.h
 
@@ -37,6 +41,7 @@ FORMS += \
     editdialog.ui \
     mainwindow.ui \
     seekbybirthdatedialog.ui \
+    seekbyeducationdialog.ui \
     seekbymarrieddialog.ui \
     seekbystatusdialog.ui
 

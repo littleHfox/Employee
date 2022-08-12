@@ -12,3 +12,8 @@ SeekbyStatusDialog::~SeekbyStatusDialog()
 {
     delete ui;
 }
+
+QString SeekbyStatusDialog::status()
+{
+    return ui->textSeekbyStatus->toPlainText();
+}

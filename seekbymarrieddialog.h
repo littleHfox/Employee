@@ -15,6 +15,9 @@ public:
     explicit SeekbyMarriedDialog(QWidget *parent = nullptr);
     ~SeekbyMarriedDialog();
 
+    int m_iMarried;
+private slots:
+    void on_checkBoxMarried_stateChanged(int arg1);
 private:
     Ui::SeekbyMarriedDialog *ui;
 };

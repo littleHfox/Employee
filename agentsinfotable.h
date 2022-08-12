@@ -10,12 +10,14 @@ public:
     bool SaveAgenttoFile(const QString& aSaveFileName);
     void AddAgent(CAgent& agent);
     void DeleteAgent(int index);
-    void EditAgent(int index);
+    void EditAgent(CAgent& agent);
     CAgent& getAgent(int index);
-    int getAgentNum();
+    CAgent& getAgentbyID(int id);
+    int getAgentsNum();
+
 private:
     QVector<CAgent> m_Agents;
-    int m_num;
+    int m_iNum;
 };
 
 #endif // AGENTSINFOTABLE_H

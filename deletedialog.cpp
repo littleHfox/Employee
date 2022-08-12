@@ -12,3 +12,9 @@ DeleteDialog::~DeleteDialog()
 {
     delete ui;
 }
+
+int DeleteDialog::deid()
+{
+    QString temp = ui->textDeleteid->toPlainText();
+    return temp.toInt();
+}

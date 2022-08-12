@@ -31,7 +31,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -53,8 +53,17 @@
     <property name="title">
      <string>查看</string>
     </property>
+    <widget class="QMenu" name="menuSeek">
+     <property name="title">
+      <string>Seek</string>
+     </property>
+     <addaction name="actionSeekbyBirthDate"/>
+     <addaction name="actionSeekbyStatus"/>
+     <addaction name="actionSeekbyEducation"/>
+     <addaction name="actionSeekbyMarried"/>
+    </widget>
     <addaction name="actionAll_Agents"/>
-    <addaction name="actionSeek"/>
+    <addaction name="menuSeek"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -91,9 +100,24 @@
     <string>All Agents</string>
    </property>
   </action>
-  <action name="actionSeek">
+  <action name="actionSeekbyBirthDate">
    <property name="text">
-    <string>Seek</string>
+    <string>by birthdate</string>
+   </property>
+  </action>
+  <action name="actionSeekbyStatus">
+   <property name="text">
+    <string>by status</string>
+   </property>
+  </action>
+  <action name="actionSeekbyEducation">
+   <property name="text">
+    <string>by education</string>
+   </property>
+  </action>
+  <action name="actionSeekbyMarried">
+   <property name="text">
+    <string>by married or not</string>
    </property>
   </action>
  </widget>

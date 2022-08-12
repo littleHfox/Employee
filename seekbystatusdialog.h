@@ -15,6 +15,7 @@ public:
     explicit SeekbyStatusDialog(QWidget *parent = nullptr);
     ~SeekbyStatusDialog();
 
+    QString status();
 private:
     Ui::SeekbyStatusDialog *ui;
 };

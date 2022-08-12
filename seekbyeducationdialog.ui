@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SeekbyBirthDateDialog</class>
- <widget class="QDialog" name="SeekbyBirthDateDialog">
+ <class>SeekbyEducationDialog</class>
+ <widget class="QDialog" name="SeekbyEducationDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>351</width>
-    <height>252</height>
+    <width>356</width>
+    <height>149</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>-20</x>
-     <y>200</y>
+     <x>0</x>
+     <y>100</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -29,53 +29,27 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
+  <widget class="QTextEdit" name="textSeekbyEducation">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>50</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>50</y>
+     <x>20</x>
+     <y>60</y>
      <width>54</width>
      <height>12</height>
     </rect>
    </property>
    <property name="text">
-    <string>日期</string>
-   </property>
-  </widget>
-  <widget class="QDateEdit" name="dateSeekbyBirthDate">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>40</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioBefore">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>120</y>
-     <width>89</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>以前</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioAfter">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>120</y>
-     <width>89</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>以后（包含）</string>
+    <string>查找学历</string>
    </property>
   </widget>
  </widget>
@@ -84,7 +58,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>SeekbyBirthDateDialog</receiver>
+   <receiver>SeekbyEducationDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -100,7 +74,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>SeekbyBirthDateDialog</receiver>
+   <receiver>SeekbyEducationDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
