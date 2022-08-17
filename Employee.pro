@@ -20,6 +20,7 @@ SOURCES += \
     seekbybirthdatedialog.cpp \
     seekbyeducationdialog.cpp \
     seekbymarrieddialog.cpp \
+    seekbysalarydialog.cpp \
     seekbystatusdialog.cpp
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     seekbybirthdatedialog.h \
     seekbyeducationdialog.h \
     seekbymarrieddialog.h \
+    seekbysalarydialog.h \
     seekbystatusdialog.h
 
 FORMS += \
@@ -43,6 +45,7 @@ FORMS += \
     seekbybirthdatedialog.ui \
     seekbyeducationdialog.ui \
     seekbymarrieddialog.ui \
+    seekbysalarydialog.ui \
     seekbystatusdialog.ui
 
 # Default rules for deployment.

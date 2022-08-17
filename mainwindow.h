@@ -22,6 +22,7 @@ public:
     void ShowStatus(QString value);
     void ShowEducation(QString value);
     void ShowMarried(int checkedID);
+    void ShowSalary(int radioID, int value);
 
 private slots:
     void on_actionOpen_triggered();
@@ -48,13 +49,15 @@ private slots:
 
     void on_actionSeekbyMarried_triggered();
 
+    void on_actionSeekbySalary_triggered();
+
     void on_ShowInfoTableView_changed();
 
 private:
     Ui::MainWindow *ui;
     QStandardItemModel * agentsInforModel;
     AgentsInfotable m_InfoTable;
-    int m_iCurTable;//当前显示的表格，0--初始状态 1--所有职员信息 2--按生日查找 3--按职称查找 4--按学历查找 5--按婚姻状况查找
+    int m_iCurTable;//当前显示的表格，0--初始状态 1--所有职员信息 2--按生日查找 3--按职称查找 4--按学历查找 5--按婚姻状况查找 6--按工资查找
     QString g_FileName;//全局变量，打开的文件名
 };
 #endif // MAINWINDOW_H

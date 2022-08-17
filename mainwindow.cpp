@@ -8,6 +8,7 @@
 #include "seekbystatusdialog.h"
 #include "seekbyeducationdialog.h"
 #include "seekbymarrieddialog.h"
+#include "seekbysalarydialog.h"
 #include "readonlydelegate.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -369,6 +370,113 @@ void MainWindow::ShowMarried(int checkedID)
         }
     }
 }
+void MainWindow::ShowSalary(int radioID, int value)
+{
+    m_iCurTable = 6;
+    agentsInforModel->clear();
+    agentsInforModel->setColumnCount(8);//8列
+
+    QStringList templist;
+    templist.append("员工编号");
+    templist.append("姓名");
+    templist.append("性别");
+    templist.append("生日");
+    templist.append("职称");
+    templist.append("学历");
+    templist.append("工资");
+    templist.append("婚姻状况");
+    agentsInforModel->setHorizontalHeaderLabels(templist);
+    int RowCnt = m_InfoTable.getAgentsNum();
+    int RowUsed = 0;    //符合条件的数据数量
+    int t = 0;//计数器
+    QStandardItem *aTempItem;
+    QString tempStr;
+    switch(radioID)
+    {
+    case 0://以前
+        for(int i = 0; i<RowCnt; ++i)
+        {
+            CAgent tempAgent =m_InfoTable.getAgent(i);
+            if(tempAgent.m_Salary<value)
+                ++RowUsed;
+        }
+        agentsInforModel->setRowCount(RowUsed);
+        for(int i = 0; i<RowCnt; ++i)
+        {
+            CAgent tempAgent = m_InfoTable.getAgent(i);
+            if(tempAgent.m_Salary<value)
+            {
+                tempStr = QString::number(tempAgent.m_id);
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 0, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Name);
+                agentsInforModel->setItem(t, 1, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Sex);
+                agentsInforModel->setItem(t, 2, aTempItem);
+                tempStr = tempAgent.m_Birthdate.toString("yyyy-MM-dd");
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 3, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Status);
+                agentsInforModel->setItem(t, 4, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Education);
+                agentsInforModel->setItem(t, 5, aTempItem);
+                tempStr = QString::number(tempAgent.m_Salary);
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 6, aTempItem);
+                if(tempAgent.m_Married == 1)
+                    tempStr = "已婚";
+                else
+                    tempStr = "未婚";
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 7, aTempItem);
+                ++t;
+            }
+        }
+        break;
+    case 1://以后（包含）
+        for(int i = 0; i<RowCnt; ++i)
+        {
+            CAgent tempAgent =m_InfoTable.getAgent(i);
+            if(tempAgent.m_Salary>=value)
+                ++RowUsed;
+        }
+        agentsInforModel->setRowCount(RowUsed);
+        for(int i = 0; i<RowCnt; ++i)
+        {
+            CAgent tempAgent = m_InfoTable.getAgent(i);
+            if(tempAgent.m_Salary>=value)
+            {
+                tempStr = QString::number(tempAgent.m_id);
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 0, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Name);
+                agentsInforModel->setItem(t, 1, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Sex);
+                agentsInforModel->setItem(t, 2, aTempItem);
+                tempStr = tempAgent.m_Birthdate.toString("yyyy-MM-dd");
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 3, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Status);
+                agentsInforModel->setItem(t, 4, aTempItem);
+                aTempItem = new QStandardItem(tempAgent.m_Education);
+                agentsInforModel->setItem(t, 5, aTempItem);
+                tempStr = QString::number(tempAgent.m_Salary);
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 6, aTempItem);
+                if(tempAgent.m_Married == 1)
+                    tempStr = "已婚";
+                else
+                    tempStr = "未婚";
+                aTempItem = new QStandardItem(tempStr);
+                agentsInforModel->setItem(t, 7, aTempItem);
+                ++t;
+            }
+        }
+        break;
+    default:
+        break;
+    }
+}
 
 void MainWindow::on_actionOpen_triggered()
 {
@@ -511,6 +619,13 @@ void MainWindow::on_actionSeekbyMarried_triggered()
     int ret = dlgMa.exec();
     if(ret == QDialog::Accepted)
         ShowMarried(dlgMa.m_iMarried);
+}
+void MainWindow::on_actionSeekbySalary_triggered()
+{
+    SeekbySalaryDialog dlgSalary;
+    int ret = dlgSalary.exec();
+    if(ret == QDialog::Accepted)
+        ShowSalary(dlgSalary.m_iRadioID, dlgSalary.Salary());
 }
 void MainWindow::on_ShowInfoTableView_changed()
 {
