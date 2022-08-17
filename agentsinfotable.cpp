@@ -7,6 +7,7 @@ AgentsInfotable::AgentsInfotable()
 
 bool AgentsInfotable::ReadAgentfromFile(const QString& aReadFileName)
 {
+    m_Agents.clear();
     QFile file(aReadFileName);
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -54,6 +55,11 @@ bool AgentsInfotable::SaveAgenttoFile(const QString& aSaveFileName)
     file.write(jsonDoc.toJson());
     file.close();
     return true;
+}
+void AgentsInfotable::clear()
+{
+    m_Agents.clear();
+    m_iNum = 0;
 }
 
 void AgentsInfotable::AddAgent(CAgent& agent)

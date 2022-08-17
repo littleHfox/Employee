@@ -26,7 +26,11 @@ public:
 private slots:
     void on_actionOpen_triggered();
 
+    void on_actionSaveas_triggered();
+
     void on_actionSave_triggered();
+
+    void on_actionClose_triggered();
 
     void on_actionAdd_triggered();
 
@@ -51,5 +55,6 @@ private:
     QStandardItemModel * agentsInforModel;
     AgentsInfotable m_InfoTable;
     int m_iCurTable;//当前显示的表格，0--初始状态 1--所有职员信息 2--按生日查找 3--按职称查找 4--按学历查找 5--按婚姻状况查找
+    QString g_FileName;//全局变量，打开的文件名
 };
 #endif // MAINWINDOW_H

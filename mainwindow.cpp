@@ -80,7 +80,6 @@ void MainWindow::ShowAllAgents()
     ReadOnlyDelegate* readOnlyDelegate = new ReadOnlyDelegate(this);
     ui->ShowInfoTableView->setItemDelegateForColumn(0, readOnlyDelegate);
 
-
 }
 void MainWindow::ShowBirthDate(int radioID, QDate valueDate)
 {
@@ -377,12 +376,13 @@ void MainWindow::on_actionOpen_triggered()
     QString dlgTitle = "选择一个文件";
     QString filter = "json文件(*.json)";
     QString aFileName = QFileDialog::getOpenFileName(this, dlgTitle, curPath, filter);
+    g_FileName = aFileName;
     if(aFileName.isEmpty())
         return;
     m_InfoTable.ReadAgentfromFile(aFileName);
     ShowAllAgents();
 }
-void MainWindow::on_actionSave_triggered()
+void MainWindow::on_actionSaveas_triggered()//另存为
 {
     QString curPath = QDir::currentPath();
     QString dlgTitle = "另存为一个文件";
@@ -391,6 +391,27 @@ void MainWindow::on_actionSave_triggered()
     if(aFileName.isEmpty())
         return;
     m_InfoTable.SaveAgenttoFile(aFileName);
+}
+void MainWindow::on_actionSave_triggered()//保存
+{
+    if(g_FileName.isEmpty())
+    {
+        QString curPath = QDir::currentPath();
+        QString dlgTitle = "保存为一个文件";
+        QString filter = "json文件(*.json)";
+        QString aFileName = QFileDialog::getSaveFileName(this, dlgTitle, curPath, filter);
+        if(aFileName.isEmpty())
+            return;
+        g_FileName = aFileName;
+    }
+    m_InfoTable.SaveAgenttoFile(g_FileName);
+}
+void MainWindow::on_actionClose_triggered()
+{
+    m_iCurTable = 0;
+    agentsInforModel->clear();
+    g_FileName.clear();
+    m_InfoTable.clear();
 }
 void MainWindow::on_actionAdd_triggered()
 {
@@ -493,15 +514,16 @@ void MainWindow::on_actionSeekbyMarried_triggered()
 }
 void MainWindow::on_ShowInfoTableView_changed()
 {
-    if(m_iCurTable == 1)
-    {
+
         QModelIndex index = ui->ShowInfoTableView->currentIndex();
-        int row = index.row();
+        QModelIndex IDindex = index.siblingAtColumn(0);     //返回选中单元格所在行的第一格的索引
+        QVariant IDdata = agentsInforModel->data(IDindex);  //获取选中单元格的员工数据的员工编号
         int col = index.column();
-        CAgent& agent = m_InfoTable.getAgent(row);
+        CAgent& agent = m_InfoTable.getAgentbyID(IDdata.toInt());   //用员工编号查找员工
         QVariant data;
         data = agentsInforModel->data(index);
-        switch (col) {
+        switch (col)
+        {
         case 0:
 
             break;
@@ -532,5 +554,4 @@ void MainWindow::on_ShowInfoTableView_changed()
         default:
             break;
         }
-    }
 }

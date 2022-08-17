@@ -8,6 +8,7 @@ public:
     AgentsInfotable();
     bool ReadAgentfromFile(const QString& aReadFileName);
     bool SaveAgenttoFile(const QString& aSaveFileName);
+    void clear();
     void AddAgent(CAgent& agent);
     void DeleteAgent(int index);
     void EditAgent(CAgent& agent);
