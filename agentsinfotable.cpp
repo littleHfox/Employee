@@ -17,11 +17,11 @@ bool AgentsInfotable::ReadAgentfromFile(const QString& aReadFileName)
     QJsonDocument jdc(QJsonDocument::fromJson(file.readAll()));
     QJsonObject obj;
     QJsonArray ary = jdc.array();
-    m_iNum = ary[0].toInt();
+    m_iNum = ary[0].toInt();            //从文件的第一个数据读取职工数量
     CAgent tempAgent;
     if(m_iNum>0)
     {
-        for(int i=0;i<m_iNum;++i)
+        for(int i=0;i<m_iNum;++i)       //依次读取职工信息
         {
             obj = ary[i+1].toObject();
             tempAgent.ReadAgent(obj);
@@ -41,10 +41,10 @@ bool AgentsInfotable::SaveAgenttoFile(const QString& aSaveFileName)
     }
     QJsonArray ary;
     QJsonObject obj;
-    ary.append(m_iNum);
+    ary.append(m_iNum);                 //将职工数量作为文件的第一个数据单独输出
     if(m_iNum>0)
     {
-        for(int i=0; i<m_iNum; ++i)
+        for(int i=0; i<m_iNum; ++i)     //将每个职工的数据作为一个object输出
         {
             m_Agents[i].SaveAgent(obj);
             ary.append(obj);
@@ -66,9 +66,9 @@ void AgentsInfotable::AddAgent(CAgent& agent)
 {
     if(m_iNum>0)
     {
-        for(int i=0; i<m_iNum; ++i)
+        for(int i=0; i<m_iNum; ++i) //检查职工编号是否已被使用
         {
-            if(m_Agents[i].m_id == agent.m_id)
+            if(m_Agents[i].m_iID == agent.m_iID)
             {
                 qCritical() << "Agent ID already existent";
                 return;
@@ -83,9 +83,9 @@ void AgentsInfotable::DeleteAgent(int index)
     bool findit = false;
     if(m_iNum>0)
     {
-        for(int i=0; i<m_iNum; ++i)
+        for(int i=0; i<m_iNum; ++i) //检查职工编号是否存在
         {
-            if(m_Agents[i].m_id == index)
+            if(m_Agents[i].m_iID == index)
             {
                 m_Agents.erase(m_Agents.begin() + i);
                 findit = true;
@@ -101,9 +101,9 @@ void AgentsInfotable::EditAgent(CAgent& agent)
     bool findit = false;
     if(m_iNum>0)
     {
-        for(int i=0; i<m_iNum; ++i)
+        for(int i=0; i<m_iNum; ++i) //检查职工编号是否存在
         {
-            if(m_Agents[i].m_id == agent.m_id)
+            if(m_Agents[i].m_iID == agent.m_iID)
             {
                 m_Agents.replace(i,agent);
                 findit = true;
@@ -119,11 +119,13 @@ CAgent& AgentsInfotable::getAgent(int index)
 }
 CAgent& AgentsInfotable::getAgentbyID(int id)
 {
-    for(int i=0; i<m_iNum; ++i)
+    for(int i=0; i<m_iNum; ++i) //穷举查找对应职工编号
     {
-        if(m_Agents[i].m_id == id)
+        if(m_Agents[i].m_iID == id)
             return m_Agents[i];
     }
+
+    //若职工编号不存在，函数无法返回值，所以抛出一个异常，用于后续处理
     try
     {
         throw "Agent inexistent";

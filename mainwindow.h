@@ -18,11 +18,11 @@ public:
     ~MainWindow();
 
     void ShowAllAgents();
-    void ShowBirthDate(int radioID, QDate valueDate);
-    void ShowStatus(QString value);
-    void ShowEducation(QString value);
-    void ShowMarried(int checkedID);
-    void ShowSalary(int radioID, int value);
+    void ShowBirthDate(int radioID, QDate valueDate);   //选中的radio编号，输入的日期
+    void ShowStatus(QString value);     //输入的职称
+    void ShowEducation(QString value);  //输入的学历
+    void ShowMarried(int checkedID);    //是否勾选，0为未勾选，2为勾选
+    void ShowSalary(int radioID, int value);    //选中的radio的编号，输入的工资值
 
 private slots:
     void on_actionOpen_triggered();
@@ -53,11 +53,17 @@ private slots:
 
     void on_ShowInfoTableView_changed();
 
+    void on_MainWindow_customContextMenuRequested(const QPoint& pos);   //鼠标右键菜单
+
+    void Deletethis();                  //直接删除选中的职工信息
+
+    void SeekbyThis();                  //筛选与当前单元格内数据相同的员工数据
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel * agentsInforModel;
     AgentsInfotable m_InfoTable;
-    int m_iCurTable;//当前显示的表格，0--初始状态 1--所有职员信息 2--按生日查找 3--按职称查找 4--按学历查找 5--按婚姻状况查找 6--按工资查找
-    QString g_FileName;//全局变量，打开的文件名
+    int m_iCurTable;    //当前显示的表格，0--初始状态 1--所有职员信息 2--按生日查找 3--按职称查找 4--按学历查找 5--按婚姻状况查找 6--按工资查找
+    QString g_FileName; //全局变量，打开的文件名
 };
 #endif // MAINWINDOW_H

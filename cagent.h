@@ -16,14 +16,14 @@ public:
     CAgent(const CAgent& agent);
     void ReadAgent(QJsonObject& aObj);
     void SaveAgent(QJsonObject& aObj);
-    int m_id;
-    QString m_Name;
-    QString m_Sex;
-    QDate m_Birthdate;
-    QString m_Status;
-    QString m_Education;
-    int m_Salary;
-    int m_Married;
+    int m_iID;              //员工编号
+    QString m_strName;      //姓名
+    QString m_strSex;       //性别
+    QDate m_dateBirthdate;   //生日
+    QString m_strStatus;    //职称
+    QString m_strEducation; //学历
+    int m_iSalary;          //工资
+    int m_iMarried;         //婚姻状况，0--未婚 1--已婚
 };
 
 #endif // CAGENT_H

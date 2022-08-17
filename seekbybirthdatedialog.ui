@@ -64,6 +64,9 @@
    <property name="text">
     <string>以前</string>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QRadioButton" name="radioAfter">
    <property name="geometry">
