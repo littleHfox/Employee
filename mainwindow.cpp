@@ -1000,7 +1000,7 @@ void MainWindow::SeekbyThis()
         break;
     case 7: //婚姻状况
         if(data.toString() == "已婚")
-            ShowMarried(2);
+            ShowMarried(1);
         if(data.toString() == "未婚")
             ShowMarried(0);
         break;
